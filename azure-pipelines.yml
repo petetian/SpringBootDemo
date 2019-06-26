@@ -21,13 +21,8 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: ArchiveFiles@2
-  displayName: 'Archive '
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/target'
-    archiveFile: '$(System.DefaultWorkingDirectory)/build/app.zip'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/build/app.zip '
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/target '
