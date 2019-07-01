@@ -1,14 +1,38 @@
 package com.jhaexample.demo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jhaexample.demo.Dto.InputDto;
+import com.jhaexample.demo.Dto.OutputDto;
+
 @RestController
-@RequestMapping("/greeting")
+@RequestMapping("/")
 public class Controller {
-	@GetMapping
-    public String hello() {
-        return "Hello JHA!, need to add business logics here";
-    }
+	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+
+	@GetMapping("/greeting")
+	public String hello() {
+		return "Hello JHA!, need to add business logics here";
+	}
+
+	@PostMapping("/lending")
+	@ResponseBody
+	public OutputDto add(@RequestBody InputDto inputDto) {
+		logger.info("input: {}", inputDto.toString());
+
+		//TODO:
+		// add business logics here
+		
+		OutputDto outputDto = new OutputDto(100, "return results");
+
+		return outputDto;
+	}
+
 }
