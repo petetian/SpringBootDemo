@@ -17,8 +17,13 @@ import com.jhaexample.demo.Dto.OutputDto;
 public class Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
-	@GetMapping("/greeting")
+	@GetMapping("/")
 	public String hello() {
+		return "Spring boot is running!";
+	}
+
+	@GetMapping("/greeting")
+	public String greeting() {
 		return "Hello JHA!, need to add business logics here";
 	}
 
