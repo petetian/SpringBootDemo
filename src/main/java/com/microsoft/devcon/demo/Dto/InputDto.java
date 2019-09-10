@@ -1,4 +1,4 @@
-package com.jhaexample.demo.Dto;
+package com.microsoft.devcon.demo.Dto;
 
 import lombok.Getter;
 import lombok.Setter;

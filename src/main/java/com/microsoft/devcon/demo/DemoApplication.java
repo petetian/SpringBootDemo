@@ -1,4 +1,4 @@
-package com.jhaexample.demo;
+package com.microsoft.devcon.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

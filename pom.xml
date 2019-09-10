@@ -9,7 +9,7 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.devcon.microsoft</groupId>
+	<groupId>com.microsoft.devcon</groupId>
 	<artifactId>demo</artifactId>
 	<version>1.0.0</version>
 	<name>demo</name>
@@ -37,11 +37,17 @@
 			<artifactId>gson</artifactId>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- Azure Application Insight -->
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>applicationinsights-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 		<dependency>
