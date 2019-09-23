@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.microsoft.applicationinsights.TelemetryClient;
 import com.microsoft.applicationinsights.telemetry.MetricTelemetry;
-import com.microsoft.devcon.demo.Dto.InputDto;
+import com.microsoft.devcon.demo.Dto.User;
 import com.microsoft.devcon.demo.Dto.OutputDto;
 
 @RestController
@@ -24,13 +24,11 @@ public class Controller {
     TelemetryClient telemetryClient;
 	 
 	@GetMapping("/")
-	public String hello() {
+	public String insights() {
 		MetricTelemetry sample = new MetricTelemetry();
 	    sample.setName("metric name");
 	    sample.setValue(42.3);
 	    telemetryClient.trackMetric(sample);
-	    
-	    telemetryClient.trackTrace("Mapping URL root...");
 	    
 	    telemetryClient.trackEvent("Spring Boot is running");
 	    
@@ -39,12 +37,17 @@ public class Controller {
 
 	@GetMapping("/greeting")
 	public String greeting() {
-		return "Hello JHA!, need to add business logics here";
+		String greetingMsg = "Hello from microsoft";
+		
+		telemetryClient.trackEvent("/greeting is triggered");
+		
+		telemetryClient.trackTrace("return message: " + greetingMsg);
+		return greetingMsg;
 	}
 
-	@PostMapping("/lending")
+	@PostMapping("/newuser")
 	@ResponseBody
-	public OutputDto add(@RequestBody InputDto inputDto) {
+	public OutputDto add(@RequestBody User inputDto) {
 		logger.info("input: {}", inputDto.toString());
 
 		//TODO:
