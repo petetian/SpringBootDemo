@@ -1,4 +1,4 @@
-package com.microsoft.devcon.demo.Dto;
+package com.microsoft.devcon.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
