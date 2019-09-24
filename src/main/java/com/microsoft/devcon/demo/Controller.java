@@ -65,6 +65,7 @@ public class Controller {
 			MetricTelemetry queryBenchmark = new MetricTelemetry();
 			queryBenchmark.setName("DB query");
 			queryBenchmark.setValue(endTime - startTime);
+			telemetryClient.trackMetric(queryBenchmark);
 			
 			return users;
 		} catch (Exception e) {
