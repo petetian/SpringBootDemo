@@ -56,8 +56,19 @@ public class Controller {
 	@GetMapping("/users")
 	public List<User> users() {
 		try {
-			return (List<User>) userRepo.findAll();
+			List<User> users;
+			
+			long startTime = System.nanoTime();
+			users = userRepo.findAll();
+			long endTime = System.nanoTime();
+			
+			MetricTelemetry queryBenchmark = new MetricTelemetry();
+			queryBenchmark.setName("DB query");
+			queryBenchmark.setValue(endTime - startTime);
+			
+			return users;
 		} catch (Exception e) {
+			telemetryClient.trackEvent("Exception: " + e.getMessage());
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
 		}
 	}
