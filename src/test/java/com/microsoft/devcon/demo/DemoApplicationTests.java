@@ -1,4 +1,4 @@
-package com.jhaexample.demo;
+package com.microsoft.devcon.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
