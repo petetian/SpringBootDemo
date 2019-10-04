@@ -54,7 +54,7 @@ public class Controller {
 	}
 	
 	@GetMapping("/users")
-	public List<User> users() {
+	public List<User> users() {			
 		try {
 			List<User> users;
 			
@@ -62,11 +62,15 @@ public class Controller {
 			users = userRepo.findAll();
 			long endTime = System.nanoTime();
 			
-			MetricTelemetry queryBenchmark = new MetricTelemetry();
-			queryBenchmark.setName("DB query");
-			queryBenchmark.setValue(endTime - startTime);
-			telemetryClient.trackMetric(queryBenchmark);
+			MetricTelemetry benchmark = new MetricTelemetry();
+			benchmark.setName("DB query");
+			benchmark.setValue(endTime - startTime);
+			telemetryClient.trackMetric(benchmark);
 			
+			Runtime runtime = Runtime.getRuntime();
+			benchmark.setName("free memory");
+			benchmark.setValue(runtime.freeMemory());
+						
 			return users;
 		} catch (Exception e) {
 			telemetryClient.trackEvent("Exception: " + e.getMessage());
