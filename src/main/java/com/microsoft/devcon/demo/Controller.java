@@ -33,11 +33,7 @@ public class Controller {
 	
 	@GetMapping("/")
 	public String insights() {
-		MetricTelemetry sample = new MetricTelemetry();
-	    sample.setName("metric name");
-	    sample.setValue(42.3);
-	    telemetryClient.trackMetric(sample);
-	    
+   
 	    telemetryClient.trackEvent("Spring Boot is running");
 	    
 		return "Spring boot is running!";
@@ -70,6 +66,7 @@ public class Controller {
 			Runtime runtime = Runtime.getRuntime();
 			benchmark.setName("free memory");
 			benchmark.setValue(runtime.freeMemory());
+			telemetryClient.trackMetric(benchmark);
 						
 			return users;
 		} catch (Exception e) {
