@@ -70,9 +70,18 @@ public class Controller {
 						
 			return users;
 		} catch (Exception e) {
-			telemetryClient.trackEvent("Exception: " + e.getMessage());
+			telemetryClient.trackEvent("Error");
+			telemetryClient.trackTrace("Exception: " + e.getMessage());
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
 		}
+	}
+	
+	@GetMapping("/mockerrors")
+	public String mockErrors() {
+		telemetryClient.trackEvent("Error");
+		telemetryClient.trackTrace("Exception: mock error");
+		
+		return "mock error";
 	}
 
 	@PostMapping("/newuser")
