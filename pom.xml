@@ -127,7 +127,7 @@
 
 
 					<!-- Java Runtime Stack for Web App on Linux -->
-					<linuxRuntime>jre8</linuxRuntime>
+					<linuxRuntime>jre11</linuxRuntime>
 				</configuration>
 			</plugin>
 		</plugins>
