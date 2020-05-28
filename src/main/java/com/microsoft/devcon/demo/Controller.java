@@ -41,7 +41,7 @@ public class Controller {
 
 	@GetMapping("/greeting")
 	public String greeting() {
-		String greetingMsg = "Hello from microsoft";
+		String greetingMsg = "Hello from Microsoft";
 		
 		telemetryClient.trackEvent("/greeting is triggered");
 		
