@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Base64;
+import java.util.Objects;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class ControllerTests {
 	@LocalServerPort
 	private int randomServerPort;
 
-	private RestTemplate restTemplate = new RestTemplate();
+	private final RestTemplate restTemplate = new RestTemplate();
 	
 	@Value("${spring.security.user.name}")
 	private String username;
@@ -52,7 +53,7 @@ public class ControllerTests {
 		final String baseUrl = "http://localhost:" + randomServerPort + "/greeting";
 	    URI uri = new URI(baseUrl);
 		    
-	    HttpEntity<String> request = new HttpEntity<String>(headers);
+	    HttpEntity<String> request = new HttpEntity<>(headers);
 		    ResponseEntity<String> result = restTemplate.exchange(uri, 
 		    		HttpMethod.GET,
 		    		request,
@@ -61,7 +62,7 @@ public class ControllerTests {
 	    //Verify request succeed
 	    Assert.assertEquals(200, result.getStatusCodeValue());
 	    logger.debug("********* [{}]", result.getBody());
-	    Assert.assertEquals(true, result.getBody().contains("Hello from microsoft"));
+	    Assert.assertEquals(true, Objects.requireNonNull(result.getBody()).contains("Hello from microsoft"));
 	}
 
 }

@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.microsoft.devcon.demo.entity.User;
 
 public interface UserRepo extends CrudRepository<User, Long> {
-	public List<User> findAll();
+	List<User> findAll();
 }
