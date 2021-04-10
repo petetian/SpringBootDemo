@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javademo-deployment
+  labels:
+    app: javademoapp
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: javademoapp
+  
+  template:
+    metadata:
+      labels:
+        app: javademoapp
+    spec:
+      containers:
+      - name: javademoapp
+        image: aksacrpt.azurecr.io/sample/javademo:1.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: '512Mi'
+            #cpu: '1'
+          limits:
+            memory: '1024Mi'
+            #cpu: '1'
+
+        ports:
+          - name: liveness-port
+            containerPort: 8080
+    
+        livenessProbe:
+          httpGet:
+            path: /actuator/health  
+            port: liveness-port    
+          initialDelaySeconds: 3
+          periodSeconds: 10
+
+        startupProbe:
+          httpGet:
+            path: /actuator/health
+            port: liveness-port        
+          initialDelaySeconds: 3
+          periodSeconds: 30
