@@ -26,16 +26,11 @@ public class Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
 	@Autowired
-    TelemetryClient telemetryClient;
-	
-	@Autowired
 	UserRepo userRepo;
 	
 	@GetMapping("/")
 	public String insights() {
    
-	    telemetryClient.trackEvent("Spring Boot is running");
-	    
 		return "Spring boot is running!";
 	}
 
@@ -43,9 +38,6 @@ public class Controller {
 	public String greeting() {
 		String greetingMsg = "Hello from Microsoft";
 		
-		telemetryClient.trackEvent("/greeting is triggered");
-		
-		telemetryClient.trackTrace("return message: " + greetingMsg);
 		return greetingMsg;
 	}
 	
@@ -61,26 +53,19 @@ public class Controller {
 			MetricTelemetry benchmark = new MetricTelemetry();
 			benchmark.setName("DB query");
 			benchmark.setValue(endTime - startTime);
-			telemetryClient.trackMetric(benchmark);
 			
 			Runtime runtime = Runtime.getRuntime();
 			benchmark.setName("free memory");
 			benchmark.setValue(runtime.freeMemory());
-			telemetryClient.trackMetric(benchmark);
 						
 			return users;
 		} catch (Exception e) {
-			telemetryClient.trackEvent("Error");
-			telemetryClient.trackTrace("Exception: " + e.getMessage());
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
 		}
 	}
 	
 	@GetMapping("/mockerrors")
 	public String mockErrors() {
-		telemetryClient.trackEvent("Error");
-		telemetryClient.trackTrace("Exception: mock error");
-		
 		return "mock error";
 	}
 
