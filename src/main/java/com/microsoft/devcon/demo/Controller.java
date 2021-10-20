@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.microsoft.applicationinsights.TelemetryClient;
 import com.microsoft.applicationinsights.telemetry.MetricTelemetry;
-import com.microsoft.devcon.demo.Dto.OutputDto;
 import com.microsoft.devcon.demo.entity.User;
-import com.microsoft.devcon.demo.repo.UserRepo;
 
 @RestController
 @RequestMapping("/")
