@@ -26,7 +26,7 @@ public class Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
 	@Autowired
-	UserRepo userRepo;
+	UserService userService;
 	
 	@GetMapping("/")
 	public String insights() {
@@ -47,7 +47,7 @@ public class Controller {
 			List<User> users;
 			
 			long startTime = System.nanoTime();
-			users = userRepo.findAll();
+			users = userService.findAll();
 			long endTime = System.nanoTime();
 			
 			MetricTelemetry benchmark = new MetricTelemetry();
@@ -69,16 +69,13 @@ public class Controller {
 		return "mock error";
 	}
 
-	@PostMapping("/newuser")
+	@PostMapping("/create")
 	@ResponseBody
-	public OutputDto add(@RequestBody User inputDto) {
+	public User add(@RequestBody User inputDto) {
 		logger.info("input: {}", inputDto.toString());
 
-		//TODO:
-		// add business logics here
-		
-		OutputDto outputDto = new OutputDto(100, "return results");
-
+		User outputDto = userService.save(inputDto);
+				
 		return outputDto;
 	}
 
