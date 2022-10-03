@@ -23,10 +23,10 @@ spec:
         resources:
           requests:
             memory: '512Mi'
-            #cpu: '1'
+            cpu: '0.25'
           limits:
             memory: '1024Mi'
-            #cpu: '1'
+            cpu: '0.25'
 
         ports:
           - name: liveness-port

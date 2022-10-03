@@ -1,5 +1,6 @@
-FROM mcr.microsoft.com/java/jdk:11-zulu-ubuntu
+#FROM mcr.microsoft.com/java/jdk:11-zulu-ubuntu
 
+FROM openjdk:11-jre
 LABEL maintainer="pete.tian@microsoft.com"
 
 COPY target/app.jar /app.jar
