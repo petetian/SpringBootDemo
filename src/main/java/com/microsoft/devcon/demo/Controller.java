@@ -27,8 +27,7 @@ public class Controller {
 	
 	@GetMapping("/")
 	public String insights() {
-   
-		return "Spring boot is running!";
+   		return "Spring boot is running!";
 	}
 
 	@GetMapping("/greeting")

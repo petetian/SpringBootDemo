@@ -9,7 +9,7 @@
 		<version>2.6.12</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.microsoft.devcon</groupId>
+	<groupId>com.microsoft.devadvocate</groupId>
 	<artifactId>demo</artifactId>
 	<version>1.0.0</version>
 	<name>demo</name>
@@ -142,7 +142,7 @@
 
 
 					<!-- Java Runtime Stack for Web App on Linux -->
-					<linuxRuntime>jre11</linuxRuntime>
+					<linuxRuntime>jre17</linuxRuntime>
 				</configuration>
 			</plugin>
 		</plugins>
