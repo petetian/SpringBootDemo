@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS user (
+  id         INTEGER      NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(250) NOT NULL,
+  last_name  VARCHAR(250) NOT NULL,
+  account_number VARCHAR(250) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
