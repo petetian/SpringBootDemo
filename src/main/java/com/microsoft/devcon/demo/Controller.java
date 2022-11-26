@@ -37,13 +37,13 @@ public class Controller {
 		return greetingMsg;
 	}
 	
-	@GetMapping("/users")
-	public List<Customer> users() {			
+	@GetMapping("/customers")
+	public List<Customer> customers() {			
 		try {
-			List<Customer> users;
+			List<Customer> customers;
 			
 			long startTime = System.nanoTime();
-			users = userService.findAll();
+			customers = userService.findAll();
 			long endTime = System.nanoTime();
 			
 			MetricTelemetry benchmark = new MetricTelemetry();
@@ -54,7 +54,7 @@ public class Controller {
 			benchmark.setName("free memory");
 			benchmark.setValue(runtime.freeMemory());
 						
-			return users;
+			return customers;
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
 		}
