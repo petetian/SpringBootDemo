@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user")
+@Table(name = "customer")
 @Getter @Setter @NoArgsConstructor
-public class User {
+public class Customer {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -22,7 +22,7 @@ public class User {
 	private String lastName;
 	private String accountNumber;
 	
-	public User(String firstName, String lastName, String accountNumber) {
+	public Customer(String firstName, String lastName, String accountNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.accountNumber = accountNumber;

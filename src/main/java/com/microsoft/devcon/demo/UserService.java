@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.microsoft.devcon.demo.entity.User;
-import com.microsoft.devcon.demo.repo.UserRepo;
+import com.microsoft.devcon.demo.entity.Customer;
+import com.microsoft.devcon.demo.repo.CustomerRepo;
 
 @Service
 public class UserService {
 	@Autowired
-	private UserRepo userRepo;
+	private CustomerRepo userRepo;
 
-	public List<User> findAll() {
+	public List<Customer> findAll() {
 		return userRepo.findAll();
 	}
 
-	public User save(User user) {
-		User newUser = userRepo.save(user);
+	public Customer save(Customer user) {
+		Customer newUser = userRepo.save(user);
 		return newUser;
 	}
 }

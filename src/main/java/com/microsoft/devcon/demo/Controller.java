@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.microsoft.applicationinsights.telemetry.MetricTelemetry;
-import com.microsoft.devcon.demo.entity.User;
+import com.microsoft.devcon.demo.entity.Customer;
 
 @RestController
 @RequestMapping("/")
@@ -38,9 +38,9 @@ public class Controller {
 	}
 	
 	@GetMapping("/users")
-	public List<User> users() {			
+	public List<Customer> users() {			
 		try {
-			List<User> users;
+			List<Customer> users;
 			
 			long startTime = System.nanoTime();
 			users = userService.findAll();
@@ -67,10 +67,10 @@ public class Controller {
 
 	@PostMapping("/create")
 	@ResponseBody
-	public User add(@RequestBody User inputDto) {
+	public Customer add(@RequestBody Customer inputDto) {
 		logger.info("input: {}", inputDto.toString());
 
-		User outputDto = userService.save(inputDto);
+		Customer outputDto = userService.save(inputDto);
 				
 		return outputDto;
 	}
