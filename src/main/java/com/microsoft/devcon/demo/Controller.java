@@ -59,11 +59,6 @@ public class Controller {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
 		}
 	}
-	
-	@GetMapping("/mockerrors")
-	public String mockErrors() {
-		return "mock error";
-	}
 
 	@PostMapping("/create")
 	@ResponseBody
