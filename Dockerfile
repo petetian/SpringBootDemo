@@ -7,10 +7,10 @@ RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11-jre
 LABEL maintainer="pete.tian@microsoft.com"
 
-COPY target/app.jar /app.jar
+COPY /home/app/target/app.jar /usr/local/lib/app.jar
 EXPOSE 8080
 
 RUN useradd -u 8877 nonroot
 USER nonroot
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "/usr/local/lib/app.jar"]
