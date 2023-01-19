@@ -7,11 +7,10 @@ RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11-jre-slim
 LABEL maintainer="pete.tian@microsoft.com"
 
-FROM ptdevregistry.azurecr.io/springboottoappservice
-COPY --from=build /home/app/target/app.jar /app.jar
+COPY --from=build /home/app/target/app.jar /usr/local/bin/app.jar
 EXPOSE 8080
 
 RUN useradd -u 8877 nonroot
 USER nonroot
 
-CMD ["java", "-jar", "/app.jar"]
+CMD ["java", "-jar", "/usr/local/bin/app.jar"]
