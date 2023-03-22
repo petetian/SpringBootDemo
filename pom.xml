@@ -36,6 +36,13 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- open API -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		
 		<!-- Azure Application Insight -->
 		<dependency>
 			<groupId>com.microsoft.azure</groupId>
