@@ -18,15 +18,15 @@ spec:
     spec:
       containers:
       - name: javademoapp
-        image: aksacrpt.azurecr.io/sample/javademo:1.0
+        image: ptdevregistry.azurecr.io/springbootdemo:latest
         imagePullPolicy: IfNotPresent
         resources:
           requests:
-            memory: '512Mi'
-            cpu: '0.25'
+            memory: 256Mi
+            cpu: 100m
           limits:
-            memory: '1024Mi'
-            cpu: '0.25'
+            memory: 1024Mi
+            cpu: 250m
 
         ports:
           - name: liveness-port
@@ -36,12 +36,12 @@ spec:
           httpGet:
             path: /actuator/health  
             port: liveness-port    
-          initialDelaySeconds: 3
+          initialDelaySeconds: 30
           periodSeconds: 10
 
         startupProbe:
           httpGet:
             path: /actuator/health
             port: liveness-port        
-          initialDelaySeconds: 3
+          initialDelaySeconds: 30
           periodSeconds: 30
