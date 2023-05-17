@@ -23,7 +23,7 @@ public class Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
 	@Autowired
-	UserService userService;
+	CustomerService userService;
 	
 	@GetMapping("/")
 	public String insights() {
