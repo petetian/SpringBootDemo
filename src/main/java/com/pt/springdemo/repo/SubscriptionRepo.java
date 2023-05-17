@@ -1,8 +1,7 @@
-package com.microsoft.devcon.demo.repo;
+package com.pt.springdemo.repo;
 
+import com.pt.springdemo.entity.Subscription;
 import org.springframework.data.repository.CrudRepository;
-
-import com.microsoft.devcon.demo.entity.Subscription;
 
 public interface SubscriptionRepo extends CrudRepository<Subscription, String> {
     Subscription findBySubscriptionId(String subscriptionId);

@@ -1,4 +1,4 @@
-package com.microsoft.devcon.demo;
+package com.pt.springdemo;
 
 import javax.annotation.PreDestroy;
 

@@ -1,4 +1,4 @@
-package com.microsoft.devcon.demo.entity;
+package com.pt.springdemo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
