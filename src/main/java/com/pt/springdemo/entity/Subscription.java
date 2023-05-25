@@ -13,11 +13,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "subscription")
 @Getter @Setter @NoArgsConstructor
-public class Subscription {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+public class Subscription extends BaseEntity {
     private String subscriptionId;
     private String subscriptionName;
     private String owner;

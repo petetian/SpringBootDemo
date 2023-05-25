@@ -1,23 +1,17 @@
 package com.pt.springdemo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "customer")
 @Getter @Setter @NoArgsConstructor
-public class Customer {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+public class Customer extends BaseEntity{
+
 	private String firstName;
 	private String lastName;
 	private String accountNumber;

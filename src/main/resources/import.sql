@@ -1,2 +1,2 @@
-INSERT INTO customer (first_name, last_name, account_number) VALUES ('John', 'Doe', 'A1238374');
-INSERT INTO customer (first_name, last_name, account_number) VALUES ('Jane', 'Smith', 'A09458584');
+INSERT INTO customer (first_name, last_name, account_number, created_at, updated_at) VALUES ('John', 'Doe', 'A1238374', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO customer (first_name, last_name, account_number, created_at, updated_at) VALUES ('Jane', 'Smith', 'A09458584', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
