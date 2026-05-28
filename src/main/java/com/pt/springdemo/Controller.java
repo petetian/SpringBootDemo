@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.microsoft.applicationinsights.telemetry.MetricTelemetry;
-
 @RestController
 @RequestMapping("/")
 public class Controller {
@@ -46,13 +44,7 @@ public class Controller {
 			customers = userService.findAll();
 			long endTime = System.nanoTime();
 			
-			MetricTelemetry benchmark = new MetricTelemetry();
-			benchmark.setName("DB query");
-			benchmark.setValue(endTime - startTime);
-			
-			Runtime runtime = Runtime.getRuntime();
-			benchmark.setName("free memory");
-			benchmark.setValue(runtime.freeMemory());
+			logger.debug("DB query took {} ns, free memory: {} bytes", endTime - startTime, Runtime.getRuntime().freeMemory());
 						
 			return customers;
 		} catch (Exception e) {
