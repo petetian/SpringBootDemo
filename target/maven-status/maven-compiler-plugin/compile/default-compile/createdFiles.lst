@@ -1,9 +1,0 @@
-com\pt\springdemo\Controller.class
-com\pt\springdemo\entity\BaseEntity.class
-com\pt\springdemo\entity\Customer.class
-com\pt\springdemo\CustomerService.class
-com\pt\springdemo\CustomErrorController.class
-com\pt\springdemo\repo\SubscriptionRepo.class
-com\pt\springdemo\repo\CustomerRepo.class
-com\pt\springdemo\entity\Subscription.class
-com\pt\springdemo\DemoApplication.class
