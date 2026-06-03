@@ -1,10 +1,16 @@
 # SpringBootDemo
 
-SpringBootDemo is a Java 17 Spring Boot 3.3 REST API sample. It exposes a small customer API backed by an in-memory H2 database, includes OpenAPI/Swagger UI for exploration, and ships with Docker and Kubernetes manifests for container-based deployment.
+SpringBootDemo is a Java 25 Spring Boot 3.3 REST API sample. It exposes a small customer API backed by an in-memory H2 database, includes OpenAPI/Swagger UI for exploration, and ships with Docker and Kubernetes manifests for container-based deployment.
+
+## Docs
+
+- `docs/README.md` documentation index
+- `docs/API.md` endpoint reference
+- `docs/ARCHITECTURE.md` service architecture and data flow
 
 ## Stack
 
-- Java 17
+- Java 25
 - Spring Boot 3.3.6
 - Spring Web
 - Spring Data JPA
@@ -50,7 +56,7 @@ The app seeds two customers on startup:
 
 ## Prerequisites
 
-- Java 17
+- Java 25
 - Maven 3.9+ or the included Maven wrapper
 - Docker, if you want to build the container image
 - A Kubernetes cluster, if you want to use the provided manifests
