@@ -1,10 +1,10 @@
 
-FROM maven:3.9-eclipse-temurin-17-alpine AS build
+FROM maven:3.9-eclipse-temurin-25 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:25-jre
 LABEL maintainer="pete.tian@microsoft.com"
 
 COPY --from=build /home/app/target/app.jar /usr/local/bin/app.jar
