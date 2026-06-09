@@ -160,6 +160,6 @@ src/main/resources/
 
 ## Development Notes
 
-- Maven tests are currently skipped through the project configuration in `pom.xml`
+- Run tests with `./mvnw test` on Linux/macOS or `.\mvnw.cmd test` on Windows
 - The application is configured for local testing on port 8080
 - In App Service scenarios, the configured port may be overridden by the hosting environment
