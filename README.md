@@ -56,7 +56,7 @@ The app seeds two customers on startup:
 
 ## Prerequisites
 
-- Java 25
+- Java 21
 - Maven 3.9+ or the included Maven wrapper
 - Docker, if you want to build the container image
 - A Kubernetes cluster, if you want to use the provided manifests
