@@ -95,9 +95,9 @@ $body = @{
   accountNumber = "A100200"
 } | ConvertTo-Json
 
-Invoke-RestMethod -Method Post \
-  -Uri http://localhost:8080/create \
-  -ContentType 'application/json' \
+Invoke-RestMethod -Method Post `
+  -Uri http://localhost:8080/create `
+  -ContentType 'application/json' `
   -Body $body
 ```
 

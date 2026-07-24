@@ -4,18 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "subscription")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class Subscription extends BaseEntity {
     private String subscriptionId;
     private String subscriptionName;
     private String owner;
     private String status;
     private String email;
+
+    public Subscription() {
+    }
 
     public Subscription(String subscriptionId, String subscriptionName, String owner, String status, String email) {
         this.subscriptionId = subscriptionId;
