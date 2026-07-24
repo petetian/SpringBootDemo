@@ -57,11 +57,13 @@ public class Controller {
 	@PostMapping("/create")
 	@ResponseBody
 	public Customer add(@RequestBody Customer inputDto) {
-		logger.info("input: {}", inputDto.toString());
-
-		Customer outputDto = userService.save(inputDto);
-				
-		return outputDto;
+		try {
+			logger.info("input: {}", inputDto.toString());
+			Customer outputDto = userService.save(inputDto);
+			return outputDto;
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+		}
 	}
 
 }

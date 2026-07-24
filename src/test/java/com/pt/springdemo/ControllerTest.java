@@ -62,6 +62,32 @@ class ControllerTest {
         assertEquals("A200", result.getAccountNumber());
     }
 
+    @Test
+    void createThrowsInternalServerErrorWhenServiceFails() {
+        Customer input = new Customer("Bob", "Smith", "B300");
+        customerService.exceptionToThrow = new RuntimeException("database write failed");
+
+        ResponseStatusException ex = assertThrows(ResponseStatusException.class, () -> controller.add(input));
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
+    }
+
+    @Test
+    void createWithValidDataReturnsCustomerWithAllFields() throws Exception {
+        Customer input = new Customer("Charlie", "Brown", "C400");
+        Customer saved = new Customer("Charlie", "Brown", "C400");
+        saved.setId(1L);
+
+        customerService.customerToSave = saved;
+
+        Customer result = controller.add(input);
+
+        assertEquals("Charlie", result.getFirstName());
+        assertEquals("Brown", result.getLastName());
+        assertEquals("C400", result.getAccountNumber());
+        assertEquals(1L, result.getId());
+    }
+
     static class FakeCustomerService extends CustomerService {
         FakeCustomerService() {
             super(null);
@@ -82,6 +108,9 @@ class ControllerTest {
 
         @Override
         public Customer save(Customer customer) {
+            if (exceptionToThrow != null) {
+                throw exceptionToThrow;
+            }
             lastSavedInput = customer;
             return customerToSave;
         }

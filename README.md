@@ -1,6 +1,6 @@
 # SpringBootDemo
 
-SpringBootDemo is a Java 21 Spring Boot 3.5 REST API sample. It exposes a small customer API backed by an in-memory H2 database, includes OpenAPI/Swagger UI for exploration, and ships with Docker and Kubernetes manifests for container-based deployment.
+SpringBootDemo is a Java 21 Spring Boot 4.0 REST API sample. It exposes a small customer API backed by an in-memory H2 database, includes OpenAPI/Swagger UI for exploration, and ships with Docker and Kubernetes manifests for container-based deployment.
 
 ## Docs
 
@@ -10,15 +10,18 @@ SpringBootDemo is a Java 21 Spring Boot 3.5 REST API sample. It exposes a small 
 
 ## Stack
 
-- Java 21
-- Spring Boot 3.5.16
-- Spring Web
-- Spring Data JPA
-- H2 in-memory database
-- Springdoc OpenAPI / Swagger UI
-- Spring Boot Actuator
-- Docker
-- Kubernetes manifests
+- **Java**: 21 (LTS)
+- **Spring Boot**: 4.0.7 GA (modular redesign with webmvc namespace)
+- **Servlet Container**: Apache Tomcat 11.0.22 (Jakarta EE 11)
+- **ORM**: Hibernate 7.2.19.Final (auto-detects H2 dialect)
+- **JSON**: Jackson 3.0 + spring-boot-jackson2 shim (Jersey 4.0 compatibility)
+- **Starter Libraries**:
+  - spring-boot-starter-webmvc
+  - spring-boot-starter-data-jpa
+  - spring-boot-starter-actuator
+  - springdoc-openapi-starter-webmvc-ui 3.0.3
+- **Database**: H2 2.4.240 in-memory
+- **Deployment**: Docker, Kubernetes manifests
 
 ## What the App Does
 
