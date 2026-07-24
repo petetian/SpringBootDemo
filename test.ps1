@@ -23,14 +23,25 @@ try {
         accountNumber = "A100200"
     } | ConvertTo-Json
     
+    Write-Host "Request Body: $body" -ForegroundColor Cyan
+    
     $response = Invoke-RestMethod -Method Post `
         -Uri http://localhost:8080/create `
         -ContentType 'application/json' `
-        -Body $body
+        -Body $body `
+        -ErrorAction Stop
     
     Write-Host "Response: $($response | ConvertTo-Json)" -ForegroundColor Green
 } catch {
-    Write-Host "Error: $_" -ForegroundColor Red
+    Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    if ($_.ErrorDetails) {
+        Write-Host "Error Details: $($_.ErrorDetails.Message)" -ForegroundColor Red
+    }
+    if ($_ | Get-Member -Name Exception -ErrorAction SilentlyContinue) {
+        if ($_.Exception -is [System.Net.Http.HttpRequestException]) {
+            Write-Host "HTTP Error" -ForegroundColor Red
+        }
+    }
 }
 
 # Test 3: Get home endpoint
