@@ -5,7 +5,6 @@ import java.util.List;
 import com.pt.springdemo.entity.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +19,11 @@ import org.springframework.web.server.ResponseStatusException;
 public class Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
-	@Autowired
-	CustomerService userService;
+	private final CustomerService userService;
+
+	public Controller(CustomerService userService) {
+		this.userService = userService;
+	}
 	
 	@GetMapping("/")
 	public String insights() {

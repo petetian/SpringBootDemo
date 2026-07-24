@@ -3,7 +3,6 @@ package com.pt.springdemo;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pt.springdemo.entity.Customer;
@@ -11,8 +10,11 @@ import com.pt.springdemo.repo.CustomerRepo;
 
 @Service
 public class CustomerService {
-	@Autowired
-	private CustomerRepo customerRepo;
+	private final CustomerRepo customerRepo;
+
+	public CustomerService(CustomerRepo customerRepo) {
+		this.customerRepo = customerRepo;
+	}
 
 	public List<Customer> findAll() {
 		return customerRepo.findAll();

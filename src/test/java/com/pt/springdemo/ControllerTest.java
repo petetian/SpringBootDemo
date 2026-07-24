@@ -13,11 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ControllerTest {
 
     private final FakeCustomerService customerService = new FakeCustomerService();
-    private final Controller controller = new Controller();
-
-    ControllerTest() {
-        controller.userService = customerService;
-    }
+    private final Controller controller = new Controller(customerService);
 
     @Test
     void insightsReturnsRunningMessage() throws Exception {
@@ -67,6 +63,10 @@ class ControllerTest {
     }
 
     static class FakeCustomerService extends CustomerService {
+        FakeCustomerService() {
+            super(null);
+        }
+
         List<Customer> customersToReturn = List.of();
         Customer customerToSave;
         Customer lastSavedInput;
