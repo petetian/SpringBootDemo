@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/")
 public class Controller {
+
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
 	private final CustomerService userService;
@@ -24,33 +25,35 @@ public class Controller {
 	public Controller(CustomerService userService) {
 		this.userService = userService;
 	}
-	
+
 	@GetMapping("/")
 	public String insights() {
-   		return "Spring boot is running!";
+		return "Spring boot is running!";
 	}
 
 	@GetMapping("/greeting")
 	public String greeting() {
 		String greetingMsg = "Hello from Microsoft";
-		
+
 		return greetingMsg;
 	}
-	
+
 	@GetMapping("/customers")
 	public List<Customer> customers() {
 		try {
 			List<Customer> customers;
-			
+
 			long startTime = System.nanoTime();
 			customers = userService.findAll();
 			long endTime = System.nanoTime();
-			
-			logger.debug("DB query took {} ns, free memory: {} bytes", endTime - startTime, Runtime.getRuntime().freeMemory());
-						
+
+			logger.debug("DB query took {} ns, free memory: {} bytes", endTime - startTime,
+					Runtime.getRuntime().freeMemory());
+
 			return customers;
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage()); 
+		}
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}
 
@@ -61,7 +64,8 @@ public class Controller {
 			logger.info("input: {}", inputDto.toString());
 			Customer outputDto = userService.save(inputDto);
 			return outputDto;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}

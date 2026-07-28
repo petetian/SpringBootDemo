@@ -10,6 +10,7 @@ import com.pt.springdemo.repo.CustomerRepo;
 
 @Service
 public class CustomerService {
+
 	private final CustomerRepo customerRepo;
 
 	public CustomerService(CustomerRepo customerRepo) {
@@ -24,4 +25,5 @@ public class CustomerService {
 		AtomicReference<Customer> newCustomer = new AtomicReference<>(customerRepo.save(customer));
 		return newCustomer.get();
 	}
+
 }

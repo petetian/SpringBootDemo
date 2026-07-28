@@ -5,15 +5,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends BaseEntity{
+public class Customer extends BaseEntity {
 
 	private String firstName;
+
 	private String lastName;
+
 	private String accountNumber;
 
 	public Customer() {
 	}
-	
+
 	public Customer(String firstName, String lastName, String accountNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,4 +45,5 @@ public class Customer extends BaseEntity{
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
+
 }

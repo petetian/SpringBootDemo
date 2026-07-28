@@ -16,25 +16,27 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
-@EntityListeners({AuditingEntityListener.class})
+@EntityListeners({ AuditingEntityListener.class })
 public abstract class BaseEntity {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    Long id;
 
-    @CreationTimestamp
-    @Column(name = "createdAt", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 
-    @UpdateTimestamp
-    @Column(name = "updatedAt", nullable = false)
-    private LocalDateTime updatedAt;
+	@CreationTimestamp
+	@Column(name = "createdAt", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
 
-    public Long getId() {
-        return id;
-    }
+	@UpdateTimestamp
+	@Column(name = "updatedAt", nullable = false)
+	private LocalDateTime updatedAt;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

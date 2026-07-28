@@ -12,107 +12,114 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ControllerTest {
 
-    private final FakeCustomerService customerService = new FakeCustomerService();
-    private final Controller controller = new Controller(customerService);
+	private final FakeCustomerService customerService = new FakeCustomerService();
 
-    @Test
-    void insightsReturnsRunningMessage() throws Exception {
-        assertEquals("Spring boot is running!", controller.insights());
-    }
+	private final Controller controller = new Controller(customerService);
 
-    @Test
-    void greetingReturnsExpectedMessage() throws Exception {
-        assertEquals("Hello from Microsoft", controller.greeting());
-    }
+	@Test
+	void insightsReturnsRunningMessage() throws Exception {
+		assertEquals("Spring boot is running!", controller.insights());
+	}
 
-    @Test
-    void customersReturnsListFromService() throws Exception {
-        Customer customer = new Customer("John", "Doe", "A100");
-        customerService.customersToReturn = List.of(customer);
+	@Test
+	void greetingReturnsExpectedMessage() throws Exception {
+		assertEquals("Hello from Microsoft", controller.greeting());
+	}
 
-        List<Customer> customers = controller.customers();
+	@Test
+	void customersReturnsListFromService() throws Exception {
+		Customer customer = new Customer("John", "Doe", "A100");
+		customerService.customersToReturn = List.of(customer);
 
-        assertEquals(1, customers.size());
-        assertEquals("John", customers.get(0).getFirstName());
-        assertEquals("Doe", customers.get(0).getLastName());
-        assertEquals("A100", customers.get(0).getAccountNumber());
-    }
+		List<Customer> customers = controller.customers();
 
-    @Test
-    void customersThrowsInternalServerErrorWhenServiceFails() {
-        customerService.exceptionToThrow = new RuntimeException("db is down");
+		assertEquals(1, customers.size());
+		assertEquals("John", customers.get(0).getFirstName());
+		assertEquals("Doe", customers.get(0).getLastName());
+		assertEquals("A100", customers.get(0).getAccountNumber());
+	}
 
-        ResponseStatusException ex = assertThrows(ResponseStatusException.class, () -> controller.customers());
+	@Test
+	void customersThrowsInternalServerErrorWhenServiceFails() {
+		customerService.exceptionToThrow = new RuntimeException("db is down");
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
-    }
+		ResponseStatusException ex = assertThrows(ResponseStatusException.class, () -> controller.customers());
 
-    @Test
-    void createPersistsAndReturnsCustomer() throws Exception {
-        Customer input = new Customer("Alice", "Walker", "A200");
-        Customer saved = new Customer("Alice", "Walker", "A200");
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
+	}
 
-        customerService.customerToSave = saved;
+	@Test
+	void createPersistsAndReturnsCustomer() throws Exception {
+		Customer input = new Customer("Alice", "Walker", "A200");
+		Customer saved = new Customer("Alice", "Walker", "A200");
 
-        Customer result = controller.add(input);
+		customerService.customerToSave = saved;
 
-        assertEquals(input, customerService.lastSavedInput);
-        assertEquals("Alice", result.getFirstName());
-        assertEquals("Walker", result.getLastName());
-        assertEquals("A200", result.getAccountNumber());
-    }
+		Customer result = controller.add(input);
 
-    @Test
-    void createThrowsInternalServerErrorWhenServiceFails() {
-        Customer input = new Customer("Bob", "Smith", "B300");
-        customerService.exceptionToThrow = new RuntimeException("database write failed");
+		assertEquals(input, customerService.lastSavedInput);
+		assertEquals("Alice", result.getFirstName());
+		assertEquals("Walker", result.getLastName());
+		assertEquals("A200", result.getAccountNumber());
+	}
 
-        ResponseStatusException ex = assertThrows(ResponseStatusException.class, () -> controller.add(input));
+	@Test
+	void createThrowsInternalServerErrorWhenServiceFails() {
+		Customer input = new Customer("Bob", "Smith", "B300");
+		customerService.exceptionToThrow = new RuntimeException("database write failed");
 
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
-    }
+		ResponseStatusException ex = assertThrows(ResponseStatusException.class, () -> controller.add(input));
 
-    @Test
-    void createWithValidDataReturnsCustomerWithAllFields() throws Exception {
-        Customer input = new Customer("Charlie", "Brown", "C400");
-        Customer saved = new Customer("Charlie", "Brown", "C400");
-        saved.setId(1L);
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
+	}
 
-        customerService.customerToSave = saved;
+	@Test
+	void createWithValidDataReturnsCustomerWithAllFields() throws Exception {
+		Customer input = new Customer("Charlie", "Brown", "C400");
+		Customer saved = new Customer("Charlie", "Brown", "C400");
+		saved.setId(1L);
 
-        Customer result = controller.add(input);
+		customerService.customerToSave = saved;
 
-        assertEquals("Charlie", result.getFirstName());
-        assertEquals("Brown", result.getLastName());
-        assertEquals("C400", result.getAccountNumber());
-        assertEquals(1L, result.getId());
-    }
+		Customer result = controller.add(input);
 
-    static class FakeCustomerService extends CustomerService {
-        FakeCustomerService() {
-            super(null);
-        }
+		assertEquals("Charlie", result.getFirstName());
+		assertEquals("Brown", result.getLastName());
+		assertEquals("C400", result.getAccountNumber());
+		assertEquals(1L, result.getId());
+	}
 
-        List<Customer> customersToReturn = List.of();
-        Customer customerToSave;
-        Customer lastSavedInput;
-        RuntimeException exceptionToThrow;
+	static class FakeCustomerService extends CustomerService {
 
-        @Override
-        public List<Customer> findAll() {
-            if (exceptionToThrow != null) {
-                throw exceptionToThrow;
-            }
-            return customersToReturn;
-        }
+		FakeCustomerService() {
+			super(null);
+		}
 
-        @Override
-        public Customer save(Customer customer) {
-            if (exceptionToThrow != null) {
-                throw exceptionToThrow;
-            }
-            lastSavedInput = customer;
-            return customerToSave;
-        }
-    }
+		List<Customer> customersToReturn = List.of();
+
+		Customer customerToSave;
+
+		Customer lastSavedInput;
+
+		RuntimeException exceptionToThrow;
+
+		@Override
+		public List<Customer> findAll() {
+			if (exceptionToThrow != null) {
+				throw exceptionToThrow;
+			}
+			return customersToReturn;
+		}
+
+		@Override
+		public Customer save(Customer customer) {
+			if (exceptionToThrow != null) {
+				throw exceptionToThrow;
+			}
+			lastSavedInput = customer;
+			return customerToSave;
+		}
+
+	}
+
 }
