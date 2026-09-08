@@ -23,7 +23,7 @@ class ControllerTest {
 
 	@Test
 	void greetingReturnsExpectedMessage() throws Exception {
-		assertEquals("Hello from Microsoft", controller.greeting());
+		assertEquals("Hello from Spring Boot", controller.greeting());
 	}
 
 	@Test

@@ -33,7 +33,7 @@ public class Controller {
 
 	@GetMapping("/greeting")
 	public String greeting() {
-		String greetingMsg = "Hello from Microsoft";
+		String greetingMsg = "Hello from Spring Boot";
 
 		return greetingMsg;
 	}
