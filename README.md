@@ -2,6 +2,10 @@
 
 SpringBootDemo is a Java 25 Spring Boot 4.0 REST API sample. It exposes a small customer API backed by an in-memory H2 database, includes OpenAPI/Swagger UI for exploration, and ships with Docker and Kubernetes manifests for container-based deployment.
 
+## Use Case
+
+Use this project as a quick prototype to test data conversion logic locally, on-premises, or in the cloud. The in-memory H2 database lets you work with sample data without provisioning or connecting to an external backend database, keeping setup lightweight and experiments repeatable. Data is reset when the application restarts.
+
 ## Docs
 
 - `docs/README.md` documentation index
@@ -30,7 +34,7 @@ The application starts an HTTP server on port 8080 by default and initializes an
 Available endpoints:
 
 - `GET /` returns `Spring boot is running!`
-- `GET /greeting` returns `Hello from Microsoft`
+- `GET /greeting` returns `Hello from Spring Boot`
 - `GET /customers` returns all seeded and created customers
 - `POST /create` creates a customer record
 - `GET /actuator/health` returns service health
